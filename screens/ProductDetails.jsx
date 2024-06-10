@@ -1,0 +1,180 @@
+import React, { useRef, useState } from "react";
+import Carousel from "react-native-snap-carousel";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+
+import Header from "@/components/Header";
+import { colors, defaultStyle } from "@/styles/styles";
+import { Avatar } from "react-native-paper";
+
+const CarouselCardItem = ({ item, index }) => {
+  return (
+    <View key={index} style={style.container}>
+      <Image style={style.image} source={{ uri: item.url }} />
+    </View>
+  );
+};
+
+const ProductDetails = ({ route: { params } }) => {
+  console.log(params.id);
+
+  const name = "Macbook pro";
+  const price = 9999;
+  const stock = 232;
+  const description = "description";
+
+  const [quantity, setQuantity] = useState(1);
+  const isCarousel = useRef(null);
+
+  const incrementQty = () => {
+    if (stock <= quantity) {
+      return;
+    }
+
+    setQuantity((prev) => prev + 1);
+  }
+
+  const decrementQty = () => {
+    if (quantity <= 1) {
+      return;
+    }
+
+    setQuantity((prev) => prev - 1);
+  }
+
+  return (
+    <View
+      style={{ ...defaultStyle, padding: 0, backgroundColor: colors.color1 }}
+    >
+      <Header back={true} />
+
+      <Carousel
+        ref={isCarousel}
+        layout="default"
+        sliderWidth={SLIDER_WIDTH}
+        itemWidth={ITEM_WIDTH}
+        data={images}
+        renderItem={CarouselCardItem}
+      />
+
+      <View
+        style={{
+          backgroundColor: colors.color2,
+          padding: 35,
+          flex: 1,
+          marginTop: -380,
+          borderTopLeftRadius: 55,
+          borderTopRightRadius: 55,
+        }}
+      >
+        <Text style={{ fontSize: 25 }} numberOfLines={2}>
+          {name}
+        </Text>
+        <Text style={{ fontSize: 18, fontWeight: "900" }}>{price}</Text>
+        <Text
+          style={{ letterSpacing: 1, lineHeight: 20, marginVertical: 15 }}
+          numberOfLines={8}
+        >
+          {description}
+        </Text>
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingHorizontal: 5,
+          }}
+        >
+          <Text style={{ color: colors.color3, fontWeight: "100" }}>
+            Quantity
+          </Text>
+
+          <View
+            style={{
+              width: 80,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity onPress={decrementQty}>
+              <Avatar.Icon
+                {...iconOptions}
+                icon="minus"
+              />
+            </TouchableOpacity>
+
+            <Text
+              style={style.quantity}
+            >
+              {quantity}
+            </Text>
+
+            <TouchableOpacity onPress={incrementQty}>
+              <Avatar.Icon
+                {...iconOptions}
+                icon="plus"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: colors.color1,
+    width: ITEM_WIDTH,
+    paddingVertical: 40,
+    height: 380,
+  },
+  image: {
+    width: ITEM_WIDTH,
+    resizeMode: "contain",
+    height: 250,
+  },
+  quantity: {
+    backgroundColor: colors.color4,
+    width: 25,
+    height: 25,
+    textAlignVertical: "center",
+    textAlign: "center",
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: colors.color5,
+  }
+});
+
+export default ProductDetails;
+
+const SLIDER_WIDTH = Dimensions.get("window").width;
+const ITEM_WIDTH = SLIDER_WIDTH;
+const iconOptions = {
+  size: 20,
+  style: {
+    borderRadius: 5,
+    backgroundColor: colors.color5,
+    width: 25,
+    height: 25,
+  }
+}
+
+const images = [
+  {
+    id: "1",
+    url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+  },
+  {
+    id: "2",
+    url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+  },
+];
