@@ -11,7 +11,8 @@ import {
 
 import Header from "@/components/Header";
 import { colors, defaultStyle } from "@/styles/styles";
-import { Avatar } from "react-native-paper";
+import { Avatar, Button } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 const CarouselCardItem = ({ item, index }) => {
   return (
@@ -46,6 +47,23 @@ const ProductDetails = ({ route: { params } }) => {
     }
 
     setQuantity((prev) => prev - 1);
+  }
+
+  const addToCardHandler = () => {
+    if (stock === 0) {
+      return Toast.show({
+        type: "error",
+        text1: "Out of stock",
+        text2: "This is text 2"
+      });
+    }
+
+    Toast.show({
+      type: "success",
+      text1: "Added to cart",
+    });
+
+    console.log("Adding to cart", quantity);
   }
 
   return (
@@ -125,6 +143,10 @@ const ProductDetails = ({ route: { params } }) => {
             </TouchableOpacity>
           </View>
         </View>
+
+        <TouchableOpacity activeOpacity={0.8} onPress={addToCardHandler}>
+          <Button icon="cart" style={style.btn} textColor={colors.color2}>Add to cart</Button>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -151,6 +173,12 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: colors.color5,
+  },
+  btn: {
+    backgroundColor: colors.color3,
+    borderRadius: 100,
+    padding: 5,
+    marginVertical: 35,
   }
 });
 
