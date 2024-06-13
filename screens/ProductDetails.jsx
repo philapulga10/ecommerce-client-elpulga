@@ -39,7 +39,7 @@ const ProductDetails = ({ route: { params } }) => {
     }
 
     setQuantity((prev) => prev + 1);
-  }
+  };
 
   const decrementQty = () => {
     if (quantity <= 1) {
@@ -47,14 +47,14 @@ const ProductDetails = ({ route: { params } }) => {
     }
 
     setQuantity((prev) => prev - 1);
-  }
+  };
 
   const addToCardHandler = () => {
     if (stock === 0) {
       return Toast.show({
         type: "error",
         text1: "Out of stock",
-        text2: "This is text 2"
+        text2: "This is text 2",
       });
     }
 
@@ -64,7 +64,7 @@ const ProductDetails = ({ route: { params } }) => {
     });
 
     console.log("Adding to cart", quantity);
-  }
+  };
 
   return (
     <View
@@ -123,29 +123,21 @@ const ProductDetails = ({ route: { params } }) => {
             }}
           >
             <TouchableOpacity onPress={decrementQty}>
-              <Avatar.Icon
-                {...iconOptions}
-                icon="minus"
-              />
+              <Avatar.Icon {...iconOptions} icon="minus" />
             </TouchableOpacity>
 
-            <Text
-              style={style.quantity}
-            >
-              {quantity}
-            </Text>
+            <Text style={style.quantity}>{quantity}</Text>
 
             <TouchableOpacity onPress={incrementQty}>
-              <Avatar.Icon
-                {...iconOptions}
-                icon="plus"
-              />
+              <Avatar.Icon {...iconOptions} icon="plus" />
             </TouchableOpacity>
           </View>
         </View>
 
         <TouchableOpacity activeOpacity={0.8} onPress={addToCardHandler}>
-          <Button icon="cart" style={style.btn} textColor={colors.color2}>Add to cart</Button>
+          <Button icon="cart" style={style.btn} textColor={colors.color2}>
+            Add to cart
+          </Button>
         </TouchableOpacity>
       </View>
     </View>
@@ -179,7 +171,7 @@ const style = StyleSheet.create({
     borderRadius: 100,
     padding: 5,
     marginVertical: 35,
-  }
+  },
 });
 
 export default ProductDetails;
@@ -193,8 +185,8 @@ const iconOptions = {
     backgroundColor: colors.color5,
     width: 25,
     height: 25,
-  }
-}
+  },
+};
 
 const images = [
   {

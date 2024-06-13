@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { Avatar, Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-import Header from "../components/Header";
-import SearchModal from "../components/SearchModal";
-import ProductCard from "../components/ProductCard";
-import Footer from "../components/Footer";
+import Header from "@/components/Header";
+import SearchModal from "@/components/SearchModal";
+import ProductCard from "@/components/ProductCard";
+import Footer from "@/components/Footer";
 import { colors, defaultStyle } from "../styles/styles";
+import Heading from "@/components/Heading";
 
 const Home = () => {
   const navigate = useNavigation();
@@ -43,10 +44,7 @@ const Home = () => {
             flexDirection: "row",
           }}
         >
-          <View>
-            <Text style={{ fontSize: 25 }}>Our</Text>
-            <Text style={{ fontSize: 25, fontWeight: "900" }}>Products</Text>
-          </View>
+          <Heading text1="Our" text2="Products" />
 
           <View>
             <TouchableOpacity onPress={() => setActiveSearch((prev) => !prev)}>

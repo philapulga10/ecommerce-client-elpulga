@@ -4,6 +4,7 @@ import Toast from "react-native-toast-message";
 
 import Home from "@/screens/Home";
 import ProductDetails from "@/screens/ProductDetails";
+import Cart from "@/screens/Cart";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function App() {
         <Stack.Group>
           <Stack.Screen name="home" component={Home} />
           <Stack.Screen name="productdetails" component={ProductDetails} />
+          <Stack.Screen name="cart" component={Cart} />
         </Stack.Group>
       </Stack.Navigator>
 

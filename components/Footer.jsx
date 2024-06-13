@@ -32,65 +32,73 @@ const Footer = ({ activeRoute = "home" }) => {
   };
 
   return (
-    loading === false && (<View
-      style={{
-        backgroundColor: colors.color1,
-        borderTopRightRadius: 120,
-        borderTopLeftRadius: 120,
-      }}
-    >
-      <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-        <TouchableOpacity
-          onPress={() => navigatationHandler(1)}
-          activeOpacity={0.8}
-        >
-          <Avatar.Icon
-            {...avatarOptions}
-            icon={activeRoute === "cart" ? "shopping" : "shopping-outline"}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigatationHandler(2)}
-          activeOpacity={0.8}
-        >
-          <Avatar.Icon
-            color={colors.color2}
-            size={50}
-            style={{ backgroundColor: colors.color1 }}
-            icon={activeRoute === "profile" ? "account" : "account-outline"}
-          />
-        </TouchableOpacity>
-      </View>
-
+    loading === false && (
       <View
         style={{
-          position: "absolute",
-          width: 80,
-          height: 80,
-          backgroundColor: colors.color2,
-          borderRadius: 100,
-          justifyContent: "center",
-          alignItems: "center",
-          top: -50,
-          alignSelf: "center",
+          backgroundColor: colors.color1,
+          borderTopRightRadius: 120,
+          borderTopLeftRadius: 120,
         }}
       >
-        <View style={{ borderRadius: 100, alignItems: "center", justifyContent: "center" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
           <TouchableOpacity
-            onPress={() => navigatationHandler(0)}
+            onPress={() => navigatationHandler(1)}
+            activeOpacity={0.8}
+          >
+            <Avatar.Icon
+              {...avatarOptions}
+              icon={activeRoute === "cart" ? "shopping" : "shopping-outline"}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigatationHandler(2)}
             activeOpacity={0.8}
           >
             <Avatar.Icon
               color={colors.color2}
               size={50}
               style={{ backgroundColor: colors.color1 }}
-              icon={activeRoute === "home" ? "home" : "home-outline"}
+              icon={activeRoute === "profile" ? "account" : "account-outline"}
             />
           </TouchableOpacity>
         </View>
+
+        <View
+          style={{
+            position: "absolute",
+            width: 80,
+            height: 80,
+            backgroundColor: colors.color2,
+            borderRadius: 100,
+            justifyContent: "center",
+            alignItems: "center",
+            top: -50,
+            alignSelf: "center",
+          }}
+        >
+          <View
+            style={{
+              borderRadius: 100,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => navigatationHandler(0)}
+              activeOpacity={0.8}
+            >
+              <Avatar.Icon
+                color={colors.color2}
+                size={50}
+                style={{ backgroundColor: colors.color1 }}
+                icon={activeRoute === "home" ? "home" : "home-outline"}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
-    </View>)
+    )
   );
 };
 
@@ -100,6 +108,6 @@ const avatarOptions = {
   color: colors.color2,
   size: 50,
   style: {
-    backgroundColor: colors.color1
-  }
-}
+    backgroundColor: colors.color1,
+  },
+};

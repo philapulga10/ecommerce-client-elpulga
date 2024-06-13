@@ -10,7 +10,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  BackHandler
+  BackHandler,
 } from "react-native";
 import { Searchbar, Headline } from "react-native-paper";
 
@@ -49,7 +49,7 @@ const SearchItem = ({ imgSrc, name, price, handler }) => {
         </View>
       </View>
     </TouchableOpacity>
-  )
+  );
 };
 
 const SearchModal = ({
@@ -64,14 +64,14 @@ const SearchModal = ({
     setSearchQuery("");
     setActiveSearch(false);
     return true;
-  }
+  };
 
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", backAction);
 
     return () => {
       BackHandler.removeEventListener("hardwareBackPress", backAction);
-    }
+    };
   }, []);
 
   return (
@@ -98,15 +98,17 @@ const SearchModal = ({
         <ScrollView>
           <View style={{ paddingVertical: 40, paddingHorizontal: 10 }}>
             {products.map((i) => {
-              return <SearchItem
-                key={i._id}
-                imgSrc={i.images[0]?.url}
-                name={i.name}
-                price={i.price}
-                handler={() =>
-                  navigate.navigate("productdetails", { id: i._id })
-                }
-              />
+              return (
+                <SearchItem
+                  key={i._id}
+                  imgSrc={i.images[0]?.url}
+                  name={i.name}
+                  price={i.price}
+                  handler={() =>
+                    navigate.navigate("productdetails", { id: i._id })
+                  }
+                />
+              );
             })}
           </View>
         </ScrollView>
