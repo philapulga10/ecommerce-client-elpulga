@@ -178,7 +178,7 @@ export default ProductDetails;
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = SLIDER_WIDTH;
-const iconOptions = {
+export const iconOptions = {
   size: 20,
   style: {
     borderRadius: 5,
