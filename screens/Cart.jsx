@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
@@ -8,6 +9,8 @@ import CartItem from "@/screens/CartItem";
 import { colors, defaultStyle } from "@/styles/styles";
 
 const Cart = () => {
+  const navigate = useNavigation();
+
   const incrementHandler = () => { };
 
   const decrementHandler = () => { };
@@ -32,7 +35,7 @@ const Cart = () => {
                 name={item.name}
                 stock={item.stock}
                 amount={item.price}
-                imgSrc={item.images[0].url}
+                imgSrc={item.image}
                 index={index}
                 quantity={item.quantity}
                 incrementHandler={incrementHandler}
@@ -54,7 +57,11 @@ const Cart = () => {
         <Text>5</Text>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={
+          cartItems.length > 0 ? () => navigate.navigate("confirmorder") : null
+        }
+      >
         <Button
           style={{
             backgroundColor: colors.color3,
@@ -74,14 +81,10 @@ const Cart = () => {
 
 export default Cart;
 
-const cartItems = [
+export const cartItems = [
   {
     name: "Macbook",
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
+    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Macbook product",
     stock: 3,
     price: 99999,
@@ -89,11 +92,7 @@ const cartItems = [
   },
   {
     name: "Puma shoes",
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
+    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Shoes product",
     stock: 3,
     price: 88888,
@@ -101,11 +100,7 @@ const cartItems = [
   },
   {
     name: "Puma shoes 123",
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
+    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Shoes product",
     stock: 3,
     price: 88888,
@@ -113,11 +108,7 @@ const cartItems = [
   },
   {
     name: "Puma shoes 456",
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
+    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Shoes product",
     stock: 3,
     price: 88888,

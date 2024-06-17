@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 
 import { colors } from "@/styles/styles";
@@ -32,10 +32,7 @@ const CartItem = ({
           borderBottomRightRadius: 100,
         }}
       >
-        <Image
-          source={{ uri: imgSrc }}
-          style={styles.img}
-        />
+        <Image source={{ uri: imgSrc }} style={styles.img} />
       </View>
 
       <View style={{ width: "40%", paddingHorizontal: 25 }}>
@@ -47,19 +44,13 @@ const CartItem = ({
         </Text>
       </View>
 
-      <View
-        style={styles.quantityContainer}
-      >
+      <View style={styles.quantityContainer}>
         <TouchableOpacity>
           <TouchableOpacity onPress={() => decrementHandler(id, quantity)}>
             <Avatar.Icon {...iconOptions} icon="minus" />
           </TouchableOpacity>
 
-          <Text
-            style={styles.quantityText}
-          >
-            {quantity}
-          </Text>
+          <Text style={styles.quantityText}>{quantity}</Text>
 
           <TouchableOpacity
             onPress={() => incrementHandler(id, quantity, stock)}
@@ -96,10 +87,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: colors.color5,
-  }
+  },
 });
 
 export default CartItem;
-
-
-
