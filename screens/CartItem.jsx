@@ -6,6 +6,7 @@ import { Avatar } from "react-native-paper";
 import { iconOptions } from "./ProductDetails";
 
 const CartItem = ({
+  navigate,
   name,
   amount,
   quantity,
@@ -36,7 +37,11 @@ const CartItem = ({
       </View>
 
       <View style={{ width: "40%", paddingHorizontal: 25 }}>
-        <Text numberOfLines={1} style={{ fontSize: 17 }}>
+        <Text
+          onPress={() => navigate.navigate("productdetails", { id })}
+          numberOfLines={1}
+          style={{ fontSize: 17 }}
+        >
           {name}
         </Text>
         <Text numberOfLines={1} style={{ fontSize: 17, fontWeight: "900" }}>

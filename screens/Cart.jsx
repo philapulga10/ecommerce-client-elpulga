@@ -30,6 +30,7 @@ const Cart = () => {
           {cartItems.map((item, index) => {
             return (
               <CartItem
+                navigate={navigate}
                 key={item.product}
                 id={item.product}
                 name={item.name}
