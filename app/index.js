@@ -12,6 +12,7 @@ import SignUp from "@/screens/SignUp";
 import ForgetPassword from "@/screens/ForgetPassword";
 import Verify from "@/screens/Verify";
 import Profile from "@/screens/Profile";
+import UpdateProfile from "@/screens/UpdateProfile";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="forgetpassword" component={ForgetPassword} />
           <Stack.Screen name="verify" component={Verify} />
           <Stack.Screen name="profile" component={Profile} />
+          <Stack.Screen name="updateprofile" component={UpdateProfile} />
         </Stack.Group>
       </Stack.Navigator>
 
