@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { Avatar, Button } from "react-native-paper";
 
 import { colors, defaultStyle, formHeading } from "@/styles/styles";
-import { Avatar, Button } from "react-native-paper";
+import ButtonBox from "@/components/ButtonBox";
+import Footer from "@/components/Footer";
 
 const Profile = ({ navigation }) => {
   const [
@@ -10,42 +12,84 @@ const Profile = ({ navigation }) => {
     // setAvatar
   ] = useState(null);
 
+  const loading = false;
+
+  const navigateHandler = () => {};
+
   return (
-    <View style={defaultStyle}>
-      <View style={{ marginBottom: 20 }}>
-        <Text style={formHeading}>Profile</Text>
+    <>
+      <View style={defaultStyle}>
+        <View style={{ marginBottom: 20 }}>
+          <Text style={formHeading}>Profile</Text>
+        </View>
+
+        <View style={styles.container}>
+          <Avatar.Image
+            style={{ backgroundColor: colors.color1 }}
+            source={{ uri: avatar }}
+            size={100}
+          />
+
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("camera", { updateProfile: true })
+            }
+          >
+            <Button textColor={colors.color1}>Change photo</Button>
+          </TouchableOpacity>
+
+          <Text style={styles.name}>{user.name}</Text>
+
+          <Text style={{ fontWeight: "300", color: colors.color2 }}>
+            {user.email}
+          </Text>
+        </View>
+
+        <View>
+          <View
+            style={{
+              flexDirection: "row",
+              margin: 10,
+              justifyContent: "space-between",
+            }}
+          >
+            <ButtonBox
+              handler={navigateHandler}
+              text="Orders"
+              icon="format-list-bulleted-square"
+            />
+            <ButtonBox
+              handler={navigateHandler}
+              text="Admin"
+              icon="view-dashboard"
+              reverse={true}
+            />
+            <ButtonBox handler={navigateHandler} text="Profile" icon="pencil" />
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              margin: 10,
+              justifyContent: "space-evenly",
+            }}
+          >
+            <ButtonBox
+              handler={navigateHandler}
+              text="Password"
+              icon="pencil"
+            />
+            <ButtonBox
+              handler={navigateHandler}
+              text="Sign out"
+              icon="exit-to-app"
+            />
+          </View>
+        </View>
       </View>
 
-      <View style={styles.container}>
-        <Avatar.Image
-          style={{ backgroundColor: colors.color1 }}
-          source={{ uri: avatar }}
-          size={100}
-        />
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate("camera", { updateProfile: true })}
-        >
-          <Button textColor={colors.color1}>Change photo</Button>
-        </TouchableOpacity>
-
-        <Text style={styles.name}>{user.name}</Text>
-
-        <Text style={{ fontWeight: "300", color: colors.color2 }}>
-          {user.email}
-        </Text>
-      </View>
-
-      <View>
-        <View
-          style={{
-            flexDirection: "row",
-            margin: 10,
-            justifyContent: "space-between",
-          }}
-        ></View>
-      </View>
-    </View>
+      <Footer />
+    </>
   );
 };
 
