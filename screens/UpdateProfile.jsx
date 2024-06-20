@@ -12,7 +12,7 @@ import {
   formStyles as styles,
 } from "@/styles/styles";
 
-const UpdateProfile = ({ navigation }) => {
+const UpdateProfile = () => {
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
