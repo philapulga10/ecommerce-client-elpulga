@@ -15,7 +15,31 @@ const Profile = ({ navigation }) => {
 
   const loading = false;
 
-  const navigateHandler = () => {};
+  const logoutHandler = () => {
+    console.log("signing out");
+  }
+
+  const navigateHandler = (text) => {
+    switch (text) {
+      case "Admin":
+        navigation.navigate("adminpanel");
+        break;
+      case "Orders":
+        navigation.navigate("orders");
+        break;
+      case "Profile":
+        navigation.navigate("updateprofile");
+        break;
+      case "Password":
+        navigation.navigate("changepassword");
+        break;
+      case "Sign out":
+        logoutHandler();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <>
