@@ -1,7 +1,17 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { colors, defaultImg } from "@/styles/styles";
-import { Avatar, Button } from "react-native-paper";
+
+import { Avatar, Button, TextInput } from "react-native-paper";
+
+import Footer from "@/components/Footer";
+import {
+  colors,
+  defaultImg,
+  defaultStyle,
+  formHeading,
+  inputOptions,
+  formStyles as styles,
+} from "@/styles/styles";
 
 const Signup = ({ navigation }) => {
   const [avatar, setAvatar] = useState("");
@@ -12,6 +22,8 @@ const Signup = ({ navigation }) => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [pinCode, setPinCode] = useState("");
+
+  let loading = false;
 
   const disableBtn =
     !name || !email || !password || !address || !city || !country || !pinCode;
