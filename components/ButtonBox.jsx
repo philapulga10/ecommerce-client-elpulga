@@ -22,7 +22,7 @@ const ButtonBox = ({
         alignItems: "center",
       }}
     >
-      <Avatar
+      <Avatar.Icon
         style={{ backgroundColor: reverse ? colors.color1 : colors.color3 }}
         size={50}
         color={colors.color2}
