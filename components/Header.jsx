@@ -18,7 +18,11 @@ const Header = ({ back, emptyCart = false }) => {
       {back && (
         <TouchableOpacity
           onPress={() => navigate.goBack()}
-          style={{ position: "absolute", left: 20, top: 40, zIndex: 10 }}
+          style={{
+            position: "absolute", left: 20,
+            // top: 40, review
+            zIndex: 10
+          }}
         >
           <Avatar.Icon
             style={{ backgroundColor: colors.color4 }}
@@ -32,7 +36,11 @@ const Header = ({ back, emptyCart = false }) => {
 
       <TouchableOpacity
         onPress={emptyCart ? emptyCartHandler : () => navigate.navigate("cart")}
-        style={{ position: "absolute", right: 20, top: 40, zIndex: 10 }}
+        style={{
+          position: "absolute", right: 20,
+          // top: 40, review
+          zIndex: 10
+        }}
       >
         <Avatar.Icon
           style={{ backgroundColor: colors.color4 }}
