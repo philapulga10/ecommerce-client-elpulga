@@ -13,7 +13,6 @@ import {
 } from "@/styles/styles";
 
 const UpdateProfile = () => {
-  const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAdress] = useState("");
