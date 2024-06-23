@@ -2,16 +2,11 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
-export const useMessageAndErrorUser = ({
+export const useMessageAndErrorUser = (
   navigation,
   dispatch,
-  navigateTo = "login",
-}) => {
-  const { loading, message, error, isAuthenticated } = useSelector(
-    (state) => state.user
-  );
-
-  console.log({ loading, isAuthenticated });
+) => {
+  const { loading, message, error, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (error) {

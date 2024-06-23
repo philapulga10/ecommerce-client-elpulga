@@ -11,7 +11,7 @@ export const login = (email, password) => async (dispatch) => {
     );
 
     dispatch({
-      type: "loginRequest",
+      type: "loginSuccess",
       payload: data.message
     });
   } catch (error) {

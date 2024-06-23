@@ -17,7 +17,7 @@ import { useMessageAndErrorUser } from "@/utils/hooks";
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
 
-  const loading = useMessageAndErrorUser({ navigation, dispatch, navigateTo: "profile" });
+  const loading = useMessageAndErrorUser(navigation, dispatch, "profile");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
