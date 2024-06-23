@@ -15,4 +15,10 @@ export const userReducer = createReducer({}, (builder) => {
     state.message = action.payload;
     state.error = action.payload;
   });
+  builder.addCase("clearError", (state) => {
+    state.error = null;
+  });
+  builder.addCase("clearMessage", (state) => {
+    state.message = null;
+  });
 });
