@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Toast from "react-native-toast-message";
+import { Provider } from "react-redux";
 
 import Home from "@/screens/Home";
 import ProductDetails from "@/screens/ProductDetails";
@@ -13,8 +14,7 @@ import ForgetPassword from "@/screens/ForgetPassword";
 import Verify from "@/screens/Verify";
 import Profile from "@/screens/Profile";
 import UpdateProfile from "@/screens/UpdateProfile";
-import { Provider } from "react-redux";
-import { store } from "../redux/store";
+import { store } from "@/redux/store";
 
 const Stack = createNativeStackNavigator();
 
