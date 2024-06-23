@@ -1,14 +1,15 @@
 import { View, TouchableOpacity } from "react-native";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+
 import { Avatar } from "react-native-paper";
 import { colors } from "@/styles/styles";
 
 const Footer = ({ activeRoute = "home" }) => {
   const navigate = useNavigation();
 
-  const loading = false;
-  const isAuthenticated = true;
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
 
   const navigatationHandler = (key) => {
     switch (key) {
@@ -63,8 +64,8 @@ const Footer = ({ activeRoute = "home" }) => {
                 isAuthenticated === false
                   ? "login"
                   : activeRoute === "profile"
-                  ? "account"
-                  : "account-outline"
+                    ? "account"
+                    : "account-outline"
               }
             />
           </TouchableOpacity>
