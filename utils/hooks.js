@@ -3,9 +3,12 @@ import { useSelector } from "react-redux";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 export const useMessageAndErrorUser = (navigation, dispatch, navigateTo) => {
-  const { loading, message, error, isAuthenticated } = useSelector(
-    (state) => state.user
-  );
+  const {
+    loading,
+    message,
+    error,
+    // isAuthenticated
+  } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (error) {
@@ -20,7 +23,10 @@ export const useMessageAndErrorUser = (navigation, dispatch, navigateTo) => {
     }
 
     if (message) {
-      navigation.navigate(navigateTo);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: navigateTo }],
+      });
 
       Toast.show({
         type: "success",

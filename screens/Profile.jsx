@@ -1,22 +1,27 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Avatar, Button } from "react-native-paper";
+import { useDispatch } from "react-redux";
 
 import { colors, defaultStyle, formHeading } from "@/styles/styles";
 import ButtonBox from "@/components/ButtonBox";
 import Loader from "@/components/Loader";
 import Footer from "@/components/Footer";
+import { useMessageAndErrorUser } from "@/utils/hooks";
+import { logout } from "@/redux/actions/userActions";
 
 const Profile = ({ navigation }) => {
+  const dispatch = useDispatch();
+
   const [
     avatar,
     // setAvatar
   ] = useState(null);
 
-  const loading = false;
+  const loading = useMessageAndErrorUser(navigation, dispatch, "login");
 
   const logoutHandler = () => {
-    console.log("signing out");
+    dispatch(logout());
   }
 
   const navigateHandler = (text) => {

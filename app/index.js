@@ -23,8 +23,6 @@ const Stack = createNativeStackNavigator();
 function MainApp() {
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.user);
-
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
@@ -32,7 +30,7 @@ function MainApp() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator
-        initialRouteName="home"
+        initialRouteName="login"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Group>
