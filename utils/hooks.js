@@ -22,7 +22,7 @@ export const useMessageAndErrorUser = (navigation, dispatch, navigateTo) => {
       });
     }
 
-    if (message) {
+    if (message && message !== "Not logged in") {
       navigation.reset({
         index: 0,
         routes: [{ name: navigateTo }],
