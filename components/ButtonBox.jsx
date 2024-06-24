@@ -21,6 +21,8 @@ const ButtonBox = ({
         borderRadius: 20,
         alignItems: "center",
       }}
+      activeOpacity={1}
+      disabled={loading}
     >
       <Avatar.Icon
         style={{ backgroundColor: reverse ? colors.color1 : colors.color3 }}

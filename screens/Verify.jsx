@@ -25,7 +25,7 @@ const Verify = ({ navigation }) => {
 
   return (
     <>
-      <View style={{ ...defaultStyle, backgroundColor: colors.color2 }}>
+      <View style={defaultStyle}>
         <View style={{ marginBottom: 20 }}>
           <Text style={formHeading}>Reset password</Text>
         </View>

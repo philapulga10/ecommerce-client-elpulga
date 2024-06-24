@@ -24,7 +24,7 @@ const ForgetPassword = ({ navigation }) => {
 
   return (
     <>
-      <View style={{ ...defaultStyle, backgroundColor: colors.color2 }}>
+      <View style={defaultStyle}>
         <View style={{ marginBottom: 20 }}>
           <Text style={formHeading}>Forget password</Text>
         </View>

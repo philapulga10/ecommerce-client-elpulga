@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Toast from "react-native-toast-message";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store } from "@/redux/store";
 
 import Home from "@/screens/Home";
@@ -16,6 +16,7 @@ import ForgetPassword from "@/screens/ForgetPassword";
 import Verify from "@/screens/Verify";
 import Profile from "@/screens/Profile";
 import UpdateProfile from "@/screens/UpdateProfile";
+import ChangePassword from "@/screens/ChangePassword";
 import { loadUser } from "@/redux/actions/userActions";
 
 const Stack = createNativeStackNavigator();
@@ -42,6 +43,7 @@ function MainApp() {
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="signup" component={SignUp} />
           <Stack.Screen name="forgetpassword" component={ForgetPassword} />
+          <Stack.Screen name="changepassword" component={ChangePassword} />
           <Stack.Screen name="verify" component={Verify} />
           <Stack.Screen name="profile" component={Profile} />
           <Stack.Screen name="updateprofile" component={UpdateProfile} />
