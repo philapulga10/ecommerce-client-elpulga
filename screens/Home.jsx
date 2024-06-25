@@ -21,7 +21,7 @@ const Home = () => {
     setCategory(id);
   };
 
-  const addToCardHandler = (id) => { };
+  const addToCardHandler = (id) => {};
 
   return (
     <>
@@ -144,11 +144,13 @@ export const products = [
     _id: "1",
     name: "1",
     price: 123,
+    stock: 456,
     images: [
       {
         url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
       },
     ],
+    category: "Nice",
   },
   {
     _id: "2",
@@ -160,6 +162,7 @@ export const products = [
         url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
       },
     ],
+    category: "Nice",
   },
   {
     _id: "3",
@@ -171,6 +174,7 @@ export const products = [
         url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
       },
     ],
+    category: "Nice",
   },
   {
     _id: "4",
@@ -182,6 +186,7 @@ export const products = [
         url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
       },
     ],
+    category: "Nice",
   },
   {
     _id: "5",
@@ -193,5 +198,6 @@ export const products = [
         url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
       },
     ],
+    category: "Nice",
   },
 ];

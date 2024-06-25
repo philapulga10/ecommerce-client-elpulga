@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 import ButtonBox from "@/components/ButtonBox";
 import ProductListHeading from "@/components/ProductListHeading";
-import { products } from "../Home";
+import { products } from "@/screens/Home";
 import ProductListItem from "@/components/ProductListItem";
 
 const AdminPanel = ({ navigation }) => {
@@ -55,6 +55,7 @@ const AdminPanel = ({ navigation }) => {
                 icon="format-list-bulleted-square"
                 text="All Orders"
                 handler={navigationHandler}
+                reverse={true}
               />
               <ButtonBox
                 icon="plus"
@@ -73,6 +74,7 @@ const AdminPanel = ({ navigation }) => {
                   navigate={navigation}
                   deleteHandler={deleteProductHandler}
                   key={product._id}
+                  id={product._id}
                   i={product._id}
                   price={product.price}
                   stock={product.stock}
