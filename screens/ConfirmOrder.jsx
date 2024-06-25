@@ -1,13 +1,13 @@
 import React from "react";
 import { ScrollView, View, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Button } from "react-native-paper";
 
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
 import ConfirmOrderItem from "@/components/ConfirmOrderItem";
 import { colors, defaultStyle } from "@/styles/styles";
 import { cartItems } from "@/screens/Cart";
-import { useNavigation } from "@react-navigation/native";
-import { Button } from "react-native-paper";
 
 const PriceTag = ({ heading, value }) => {
   return (

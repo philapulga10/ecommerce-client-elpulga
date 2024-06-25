@@ -2,8 +2,8 @@ import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-
 import { Avatar } from "react-native-paper";
+
 import { colors } from "@/styles/styles";
 
 const Footer = ({ activeRoute = "home" }) => {

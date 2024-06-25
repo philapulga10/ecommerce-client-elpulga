@@ -1,6 +1,5 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-
 import { Avatar, Button, TextInput } from "react-native-paper";
 
 import Footer from "@/components/Footer";

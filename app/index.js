@@ -18,6 +18,7 @@ import Profile from "@/screens/Profile";
 import UpdateProfile from "@/screens/UpdateProfile";
 import ChangePassword from "@/screens/ChangePassword";
 import Orders from "@/screens/Orders";
+import AdminPanel from "@/screens/Admin/AdminPanel";
 import { loadUser } from "@/redux/actions/userActions";
 
 const Stack = createNativeStackNavigator();
@@ -49,6 +50,8 @@ function MainApp() {
           <Stack.Screen name="profile" component={Profile} />
           <Stack.Screen name="updateprofile" component={UpdateProfile} />
           <Stack.Screen name="orders" component={Orders} />
+
+          <Stack.Screen name="adminpanel" component={AdminPanel} />
         </Stack.Group>
       </Stack.Navigator>
 

@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { Button, RadioButton } from "react-native-paper";
 
 import { colors, defaultStyle } from "@/styles/styles";
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
-import { Button, RadioButton } from "react-native-paper";
 
 const Payment = ({ navigation, route }) => {
   const [paymentMethod, setPaymentMethod] = useState("COD");

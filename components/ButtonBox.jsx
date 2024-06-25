@@ -1,8 +1,8 @@
 import { TouchableOpacity, Text } from "react-native";
 import React from "react";
+import { Avatar } from "react-native-paper";
 
 import { colors } from "@/styles/styles";
-import { Avatar } from "react-native-paper";
 
 const ButtonBox = ({
   icon,

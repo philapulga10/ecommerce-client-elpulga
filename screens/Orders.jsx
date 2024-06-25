@@ -1,15 +1,11 @@
-import { ScrollView, View, Text } from 'react-native'
-import React from 'react'
+import { ScrollView, View, Text } from "react-native";
+import React from "react";
+import { Headline } from "react-native-paper";
 
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
-
-import {
-  colors,
-  defaultStyle,
-  formHeading,
-} from "@/styles/styles";
-import { Headline } from 'react-native-paper';
+import OrderItem from "@/components/OrderItem";
+import { colors, defaultStyle, formHeading } from "@/styles/styles";
 
 const Orders = () => {
   const loading = false;
@@ -22,16 +18,34 @@ const Orders = () => {
         <Text style={formHeading}>Orders</Text>
       </View>
 
-      {loading ? (<Loader />) : (<View>
-        <Text style={{ padding: 10, flex: 1 }}>
-          <ScrollView showsVerticalScrollIndicator={false}>{
-            ORDERS.length > 0 ? null : <Headline style={{ textAlign: "center" }}>No orders yet</Headline>
-          }</ScrollView>
-        </Text>
-      </View>)}
+      {loading ? (
+        <Loader />
+      ) : (
+        <View style={{ padding: 10, flex: 1 }}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {ORDERS.length > 0 ? (
+              ORDERS.map((item, index) => (
+                <OrderItem
+                  key={item._id}
+                  id={item._id}
+                  i={index}
+                  admin={true}
+                  price={item.totalAmount}
+                  status={item.orderStatus}
+                  paymentMethod={item.paymentMethod}
+                  orderedOn={item.createdAt.split("T")[0]}
+                  address={`${item.shippingInfo.address}, ${item.shippingInfo.city}, ${item.shippingInfo.country} ${item.shippingInfo.country}`}
+                />
+              ))
+            ) : (
+              <Headline style={{ textAlign: "center" }}>No orders yet</Headline>
+            )}
+          </ScrollView>
+        </View>
+      )}
     </View>
-  )
-}
+  );
+};
 
 export default Orders;
 
@@ -50,7 +64,7 @@ const ORDERS = [
     totalAmount: 20000,
   },
   {
-    _id: "12345",
+    _id: "12346",
     shippingInfo: {
       address: "Bong Sao",
       city: "TPHCM",
@@ -61,5 +75,5 @@ const ORDERS = [
     orderStatus: "Processing",
     paymentMethod: "ONLINE",
     totalAmount: 20000,
-  }
-]
+  },
+];

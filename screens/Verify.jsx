@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { Button, TextInput } from "react-native-paper";
 
 import {
   colors,
@@ -8,7 +9,6 @@ import {
   inputOptions,
   formStyles as styles,
 } from "@/styles/styles";
-import { Button, TextInput } from "react-native-paper";
 import Footer from "@/components/Footer";
 
 const Verify = ({ navigation }) => {

@@ -8,11 +8,12 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
+import { Avatar, Button } from "react-native-paper";
+import Toast from "react-native-toast-message";
 
 import Header from "@/components/Header";
 import { colors, defaultStyle } from "@/styles/styles";
-import { Avatar, Button } from "react-native-paper";
-import Toast from "react-native-toast-message";
+
 
 const CarouselCardItem = ({ item, index }) => {
   return (
