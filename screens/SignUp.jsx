@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Button, TextInput } from "react-native-paper";
+import mime from "mime";
 
 import Footer from "@/components/Footer";
 import {
@@ -12,7 +13,7 @@ import {
   formStyles as styles,
 } from "@/styles/styles";
 
-const Signup = ({ navigation }) => {
+const Signup = ({ navigation, route }) => {
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,10 +29,36 @@ const Signup = ({ navigation }) => {
     !name || !email || !password || !address || !city || !country || !pinCode;
 
   const submitHandler = () => {
-    alert("Yeah");
+    const myForm = new FormData();
 
-    navigation.navigate("verify");
+    myForm.append("name", name);
+    myForm.append("email", email);
+    myForm.append("password", password);
+    myForm.append("address", address);
+    myForm.append("city", city);
+    myForm.append("country", country);
+    myForm.append("pinCode", pinCode);
+
+    if (avatar) {
+      myForm.append("file", {
+        uri: avatar,
+        type: mime.getType(avatar),
+        name: avatar.split("/").pop(),
+      });
+    }
+
+    console.log({
+      uri: avatar,
+      type: mime.getType(avatar),
+      name: avatar.split("/").pop(),
+    });
   };
+
+  useEffect(() => {
+    if (route.params?.image) {
+      setAvatar(route.params.image);
+    }
+  }, [route.params]);
 
   return (
     <>
