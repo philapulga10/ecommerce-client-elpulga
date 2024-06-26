@@ -8,6 +8,7 @@ import ButtonBox from "@/components/ButtonBox";
 import ProductListHeading from "@/components/ProductListHeading";
 import { products } from "@/screens/Home";
 import ProductListItem from "@/components/ProductListItem";
+import Chart from "@/components/Chart";
 
 const AdminPanel = ({ navigation }) => {
   const navigationHandler = () => {};
@@ -36,7 +37,9 @@ const AdminPanel = ({ navigation }) => {
               borderRadius: 20,
               alignItems: "center",
             }}
-          ></View>
+          >
+            <Chart inStock={12} outOfStock={2} />
+          </View>
 
           <View>
             <View
