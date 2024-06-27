@@ -11,7 +11,21 @@ import ProductListItem from "@/components/ProductListItem";
 import Chart from "@/components/Chart";
 
 const AdminPanel = ({ navigation }) => {
-  const navigationHandler = () => {};
+  const navigationHandler = (text) => {
+    switch (text) {
+      case "Category":
+        navigation.navigate("categories");
+        break;
+      case "Product":
+        navigation.navigate("newproduct");
+        break;
+      case "All Orders":
+        navigation.navigate("adminorders");
+        break;
+      default:
+        break;
+    }
+  };
 
   const deleteProductHandler = (id) => {
     console.log(`Deleting product with Id: ${id}`);

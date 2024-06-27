@@ -150,7 +150,7 @@ export const products = [
         url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
       },
     ],
-    category: "Nice",
+    category: "IDK",
   },
   {
     _id: "2",
@@ -162,7 +162,7 @@ export const products = [
         url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
       },
     ],
-    category: "Nice",
+    category: "Laptop",
   },
   {
     _id: "3",
