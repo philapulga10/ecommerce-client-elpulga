@@ -1,21 +1,29 @@
-import { ScrollView, View, Text } from "react-native";
+import { View, ScrollView, Text } from "react-native";
 import React from "react";
-import { Headline } from "react-native-paper";
 
 import Header from "@/components/Header";
-import Loader from "@/components/Loader";
+import { defaultStyle, colors, formHeading } from "@/styles/styles";
 import OrderItem from "@/components/OrderItem";
-import { colors, defaultStyle, formHeading } from "@/styles/styles";
+import { ORDERS } from "@/screens/Orders";
+import { Headline } from "react-native-paper";
 
-const Orders = () => {
+const AdminOrders = () => {
   const loading = false;
+  const proccessOrderLoading = false;
+
+  const updateHandler = () => {};
 
   return (
-    <View style={{ ...defaultStyle, backgroundColor: colors.color5 }}>
+    <View
+      style={{
+        ...defaultStyle,
+        backgroundColor: colors.color5,
+      }}
+    >
       <Header back={true} />
 
       <View style={{ marginBottom: 20, paddingTop: 70 }}>
-        <Text style={formHeading}>Orders</Text>
+        <Text style={formHeading}>All Orders</Text>
       </View>
 
       {loading ? (
@@ -35,6 +43,8 @@ const Orders = () => {
                   paymentMethod={item.paymentMethod}
                   orderedOn={item.createdAt.split("T")[0]}
                   address={`${item.shippingInfo.address}, ${item.shippingInfo.city}, ${item.shippingInfo.country} ${item.shippingInfo.country}`}
+                  updateHandler={updateHandler}
+                  loading={proccessOrderLoading}
                 />
               ))
             ) : (
@@ -47,33 +57,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
-
-export const ORDERS = [
-  {
-    _id: "12345",
-    shippingInfo: {
-      address: "Bong Sao",
-      city: "TPHCM",
-      country: "TPHCM",
-      pinCode: 696969,
-    },
-    createdAt: "12-2-2024T2343",
-    orderStatus: "Processing",
-    paymentMethod: "COD",
-    totalAmount: 20000,
-  },
-  {
-    _id: "12346",
-    shippingInfo: {
-      address: "Bong Sao",
-      city: "TPHCM",
-      country: "TPHCM",
-      pinCode: 696969,
-    },
-    createdAt: "12-2-2024T2343",
-    orderStatus: "Processing",
-    paymentMethod: "ONLINE",
-    totalAmount: 20000,
-  },
-];
+export default AdminOrders;
