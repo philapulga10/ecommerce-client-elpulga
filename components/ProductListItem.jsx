@@ -17,6 +17,8 @@ const ProductListItem = ({
 }) => {
   const [openModal, setOpenModal] = useState(false);
 
+  console.log("--------------ProductListItem.navigate", navigate);
+
   return (
     <>
       <TouchableOpacity
@@ -76,16 +78,14 @@ const ProductListItem = ({
         </View>
       </TouchableOpacity>
 
-      {
-        openModal && (
-          <MyModal
-            id={id}
-            navigate={navigate}
-            setOpenModal={setOpenModal}
-            deleteHandler={deleteHandler}
-          />
-        )
-      }
+      {openModal && (
+        <MyModal
+          id={id}
+          navigate={navigate}
+          setOpenModal={setOpenModal}
+          deleteHandler={deleteHandler}
+        />
+      )}
     </>
   );
 };

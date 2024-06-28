@@ -5,6 +5,7 @@ import Toast from "react-native-toast-message";
 import { Provider, useDispatch } from "react-redux";
 import { store } from "@/redux/store";
 
+import { loadUser } from "@/redux/actions/userActions";
 import Home from "@/screens/Home";
 import ProductDetails from "@/screens/ProductDetails";
 import Cart from "@/screens/Cart";
@@ -21,7 +22,7 @@ import Orders from "@/screens/Orders";
 import AdminPanel from "@/screens/Admin/AdminPanel";
 import Categories from "@/screens/Admin/Categories";
 import AdminOrders from "@/screens/Admin/AdminOrders";
-import { loadUser } from "@/redux/actions/userActions";
+import UpdateProduct from "@/screens/Admin/UpdateProduct";
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +57,7 @@ function MainApp() {
           <Stack.Screen name="adminpanel" component={AdminPanel} />
           <Stack.Screen name="categories" component={Categories} />
           <Stack.Screen name="adminorders" component={AdminOrders} />
+          <Stack.Screen name="updateproduct" component={UpdateProduct} />
         </Stack.Group>
       </Stack.Navigator>
 

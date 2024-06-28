@@ -4,7 +4,7 @@ import React from "react";
 import { colors } from "@/styles/styles";
 import { Avatar, Button } from "react-native-paper";
 
-const MyModal = (id, navigate, setOpenModal, deleteHandler) => {
+const MyModal = ({ id, navigate, setOpenModal, deleteHandler }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
