@@ -19,6 +19,7 @@ import Profile from "@/screens/Profile";
 import UpdateProfile from "@/screens/UpdateProfile";
 import ChangePassword from "@/screens/ChangePassword";
 import Orders from "@/screens/Orders";
+import Camera from "@/screens/Camera";
 import AdminPanel from "@/screens/Admin/AdminPanel";
 import Categories from "@/screens/Admin/Categories";
 import AdminOrders from "@/screens/Admin/AdminOrders";
@@ -55,6 +56,7 @@ function MainApp() {
           <Stack.Screen name="profile" component={Profile} />
           <Stack.Screen name="updateprofile" component={UpdateProfile} />
           <Stack.Screen name="orders" component={Orders} />
+          <Stack.Screen name="camera" component={Camera} />
 
           <Stack.Screen name="adminpanel" component={AdminPanel} />
           <Stack.Screen name="categories" component={Categories} />

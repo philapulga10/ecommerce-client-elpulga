@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   defaultStyle,
@@ -12,13 +12,10 @@ import Header from "@/components/Header";
 import { Avatar, Button, TextInput } from "react-native-paper";
 import SelectComponent from "../../components/SelectComponent";
 
-const NewProduct = ({ navigation }) => {
+const NewProduct = ({ navigation, route }) => {
   const loading = false;
 
-  const [
-    image,
-    // setImage
-  ] = useState("");
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -38,6 +35,12 @@ const NewProduct = ({ navigation }) => {
   const submitHandler = () => {
     console.log(name, description, price, stock, category, categoryId);
   };
+
+  useEffect(() => {
+    if (route.params?.image) {
+      setImage(route.params.image);
+    }
+  }, [route.params]);
 
   return (
     <>

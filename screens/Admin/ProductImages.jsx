@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
 
 import Header from "@/components/Header";
@@ -10,14 +10,8 @@ const ProductImages = ({ navigation, route }) => {
   const [
     // productId
   ] = useState(route.params.id);
-  const [
-    image,
-    // setImage
-  ] = useState(null);
-  const [
-    imageChanged,
-    // setImageChanged
-  ] = useState(false);
+  const [image, setImage] = useState(null);
+  const [imageChanged, setImageChanged] = useState(false);
 
   const loading = false;
 
@@ -26,6 +20,13 @@ const ProductImages = ({ navigation, route }) => {
   };
 
   const submitHandler = () => {};
+
+  useEffect(() => {
+    if (route.params?.image) {
+      setImage(route.params.image);
+      setImageChanged(true);
+    }
+  }, [route.params]);
 
   return (
     <View

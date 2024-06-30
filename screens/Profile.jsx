@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
 import { useDispatch } from "react-redux";
 
@@ -10,13 +10,10 @@ import Footer from "@/components/Footer";
 import { useMessageAndErrorUser } from "@/utils/hooks";
 import { logout } from "@/redux/actions/userActions";
 
-const Profile = ({ navigation }) => {
+const Profile = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
-  const [
-    avatar,
-    // setAvatar
-  ] = useState(null);
+  const [avatar, setAvatar] = useState(null);
 
   const loading = useMessageAndErrorUser(navigation, dispatch, "login");
 
@@ -45,6 +42,12 @@ const Profile = ({ navigation }) => {
         break;
     }
   };
+
+  useEffect(() => {
+    if (route.params?.image) {
+      setAvatar(route.params.image);
+    }
+  }, [route.params]);
 
   return (
     <>
