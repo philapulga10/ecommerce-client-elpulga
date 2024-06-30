@@ -11,9 +11,9 @@ import { colors, defaultStyle } from "@/styles/styles";
 const Cart = () => {
   const navigate = useNavigation();
 
-  const incrementHandler = () => { };
+  const incrementHandler = () => {};
 
-  const decrementHandler = () => { };
+  const decrementHandler = () => {};
 
   return (
     <View style={{ ...defaultStyle, padding: 0 }}>
@@ -27,7 +27,7 @@ const Cart = () => {
 
       <View style={{ paddingVertical: 20, flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {cartItems.map((item, index) => {
+          {CART_ITAMES.map((item, index) => {
             return (
               <CartItem
                 navigate={navigate}
@@ -60,7 +60,9 @@ const Cart = () => {
 
       <TouchableOpacity
         onPress={
-          cartItems.length > 0 ? () => navigate.navigate("confirmorder") : null
+          CART_ITAMES.length > 0
+            ? () => navigate.navigate("confirmorder")
+            : null
         }
       >
         <Button
@@ -82,10 +84,11 @@ const Cart = () => {
 
 export default Cart;
 
-export const cartItems = [
+export const CART_ITAMES = [
   {
     name: "Macbook",
-    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+    image:
+      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Macbook product",
     stock: 3,
     price: 99999,
@@ -93,7 +96,8 @@ export const cartItems = [
   },
   {
     name: "Puma shoes",
-    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+    image:
+      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Shoes product",
     stock: 3,
     price: 88888,
@@ -101,7 +105,8 @@ export const cartItems = [
   },
   {
     name: "Puma shoes 123",
-    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+    image:
+      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Shoes product",
     stock: 3,
     price: 88888,
@@ -109,7 +114,8 @@ export const cartItems = [
   },
   {
     name: "Puma shoes 456",
-    image: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+    image:
+      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
     product: "Shoes product",
     stock: 3,
     price: 88888,

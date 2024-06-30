@@ -23,7 +23,10 @@ const UpdateProduct = ({ navigation, route }) => {
   const [stock, setStock] = useState("");
   const [category, setCategory] = useState("Electronics");
   const [categoryId, setCategoryId] = useState("");
-  const [categories, setCategories] = useState([
+  const [
+    categories,
+    // setCategories
+  ] = useState([
     { _id: 1, category: "Electronics" },
     { _id: 2, category: "Clothes" },
     { _id: 3, category: "Shoes" },
@@ -67,7 +70,7 @@ const UpdateProduct = ({ navigation, route }) => {
             >
               <Button
                 onPress={() =>
-                  navigation.navigate("productimages", { id, images: [] })
+                  navigation.navigate("productimages", { id, IMAGES })
                 }
                 textColor={colors.color1}
               >
@@ -142,3 +145,14 @@ const UpdateProduct = ({ navigation, route }) => {
 };
 
 export default UpdateProduct;
+
+const IMAGES = [
+  {
+    url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+    _id: 1,
+  },
+  {
+    url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
+    _id: 1,
+  },
+];

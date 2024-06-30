@@ -22,7 +22,7 @@ const Profile = ({ navigation }) => {
 
   const logoutHandler = () => {
     dispatch(logout());
-  }
+  };
 
   const navigateHandler = (text) => {
     switch (text) {
@@ -72,10 +72,10 @@ const Profile = ({ navigation }) => {
                 <Button textColor={colors.color1}>Change photo</Button>
               </TouchableOpacity>
 
-              <Text style={styles.name}>{user.name}</Text>
+              <Text style={styles.name}>{USER.name}</Text>
 
               <Text style={{ fontWeight: "300", color: colors.color2 }}>
-                {user.email}
+                {USER.email}
               </Text>
             </View>
 
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const user = {
+const USER = {
   name: "elpulga",
   email: "elpulga@gmail.com",
 };

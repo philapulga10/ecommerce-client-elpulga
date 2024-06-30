@@ -14,7 +14,6 @@ import Toast from "react-native-toast-message";
 import Header from "@/components/Header";
 import { colors, defaultStyle } from "@/styles/styles";
 
-
 const CarouselCardItem = ({ item, index }) => {
   return (
     <View key={index} style={style.container}>
@@ -78,7 +77,7 @@ const ProductDetails = ({ route: { params } }) => {
         layout="default"
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
-        data={images}
+        data={IMAGES}
         renderItem={CarouselCardItem}
       />
 
@@ -189,7 +188,7 @@ export const iconOptions = {
   },
 };
 
-const images = [
+const IMAGES = [
   {
     id: "1",
     url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
