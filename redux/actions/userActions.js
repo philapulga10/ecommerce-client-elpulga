@@ -4,7 +4,7 @@ import { SERVER } from "@/redux/store";
 
 export const register = (formData) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${SERVER}/user/new`, formData, {
+    const { data } = await axios.post(`${SERVER}/user/register`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true,
     });
