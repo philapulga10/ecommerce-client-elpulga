@@ -1,10 +1,10 @@
 import { View, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Camera, CameraType } from "expo-camera/legacy";
 import { Avatar } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 
-import { colors } from "@/styles/styles";
+import { colors, defaultStyle } from "@/styles/styles";
 
 const MyIcon = ({ icon, handler }) => {
   return (
@@ -56,7 +56,49 @@ const CameraComponent = ({ navigation, route }) => {
     }
   };
 
-  const clickPicture = () => {};
+  const clickPicture = async () => {
+    const data = await camera.takePictureAsync();
+
+    if (route.params?.newProduct) {
+      return navigation.navigate("newproduct", {
+        image: data.uri,
+      });
+    }
+    if (route.params?.updateProduct) {
+      return navigation.navigate("productimages", {
+        image: data.uri,
+      });
+    }
+    if (route.params?.updateProfile) {
+      return navigation.navigate("profile", {
+        image: data.uri,
+      });
+    } else {
+      return navigation.navigate("signup", {
+        image: data.uri,
+      });
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+
+      setHasPermisstion(status === "granted");
+    })();
+  }, []);
+
+  if (hasPermisstion === null) {
+    return <View />;
+  }
+
+  if (hasPermisstion === false) {
+    return (
+      <View style={defaultStyle}>
+        <Text>No access to camera</Text>
+      </View>
+    );
+  }
 
   return (
     <View
