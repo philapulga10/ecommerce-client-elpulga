@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { colors, defaultStyle, formHeading } from "@/styles/styles";
+import { colors, defaultStyle, formHeading, defaultImg } from "@/styles/styles";
 import ButtonBox from "@/components/ButtonBox";
 import Loader from "@/components/Loader";
 import Footer from "@/components/Footer";
@@ -11,9 +11,12 @@ import { useMessageAndErrorUser } from "@/utils/hooks";
 import { logout } from "@/redux/actions/userActions";
 
 const Profile = ({ navigation, route }) => {
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(
+    user?.avatar ? user.avatar.url : defaultImg
+  );
 
   const loading = useMessageAndErrorUser(navigation, dispatch, "login");
 
@@ -75,10 +78,10 @@ const Profile = ({ navigation, route }) => {
                 <Button textColor={colors.color1}>Change photo</Button>
               </TouchableOpacity>
 
-              <Text style={styles.name}>{USER.name}</Text>
+              <Text style={styles.name}>{user?.name}</Text>
 
               <Text style={{ fontWeight: "300", color: colors.color2 }}>
-                {USER.email}
+                {user?.email}
               </Text>
             </View>
 
@@ -95,12 +98,14 @@ const Profile = ({ navigation, route }) => {
                   text="Orders"
                   icon="format-list-bulleted-square"
                 />
-                <ButtonBox
-                  handler={navigateHandler}
-                  text="Admin"
-                  icon="view-dashboard"
-                  reverse={true}
-                />
+                {user?.role === "admin" && (
+                  <ButtonBox
+                    handler={navigateHandler}
+                    text="Admin"
+                    icon="view-dashboard"
+                    reverse={true}
+                  />
+                )}
                 <ButtonBox
                   handler={navigateHandler}
                   text="Profile"
@@ -153,8 +158,3 @@ const styles = StyleSheet.create({
     color: colors.color2,
   },
 });
-
-const USER = {
-  name: "elpulga",
-  email: "elpulga@gmail.com",
-};
