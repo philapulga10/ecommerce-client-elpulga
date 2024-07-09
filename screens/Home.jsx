@@ -1,7 +1,8 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "@/components/Header";
 import SearchModal from "@/components/SearchModal";
@@ -9,19 +10,29 @@ import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/Footer";
 import { colors, defaultStyle } from "../styles/styles";
 import Heading from "@/components/Heading";
+import { getAllProducts } from "@/redux/actions/productAction";
 
 const Home = () => {
   const navigate = useNavigation();
+  const dispath = useDispatch();
 
   const [category, setCategory] = useState("");
   const [activeSearch, setActiveSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const { products } = useSelector((state) => {
+    return state.product;
+  });
 
   const categoryButtonHandler = (id) => {
     setCategory(id);
   };
 
   const addToCardHandler = (id) => {};
+
+  useEffect(() => {
+    dispath(getAllProducts());
+  }, [dispath]);
 
   return (
     <>
@@ -136,68 +147,5 @@ const categories = [
   {
     _id: "5",
     category: "Helicopter",
-  },
-];
-
-export const products = [
-  {
-    _id: "1",
-    name: "1",
-    price: 123,
-    stock: 456,
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
-    category: "IDK",
-  },
-  {
-    _id: "2",
-    name: "2",
-    price: 123,
-    stock: 456,
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
-    category: "Laptop",
-  },
-  {
-    _id: "3",
-    name: "3",
-    price: 123,
-    stock: 456,
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
-    category: "Nice",
-  },
-  {
-    _id: "4",
-    name: "4",
-    price: 123,
-    stock: 456,
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
-    category: "Nice",
-  },
-  {
-    _id: "5",
-    name: "5",
-    price: 123,
-    stock: 456,
-    images: [
-      {
-        url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-      },
-    ],
-    category: "Nice",
   },
 ];

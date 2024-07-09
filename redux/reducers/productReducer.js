@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-export const userReducer = createReducer(
+export const productReducer = createReducer(
   {
     products: [],
     product: {},
@@ -10,28 +10,32 @@ export const userReducer = createReducer(
       .addCase("getAllProductsRequest", (state) => {
         state.loading = true;
       })
-      .addCase("getAdminProductsRequest", (state) => {
+      .addCase("getAdminProductsRequest", (state, action) => {
         state.loading = true;
         state.products = action.payload;
       })
       .addCase("getProductsDetailsRequest", (state) => {
         state.loading = true;
       })
-      .addCase("getAdminProductSuccess", (state) => {
+      .addCase("getAllProductsSuccess", (state, action) => {
         state.loading = true;
+        state.products = action.payload;
+      })
+      .addCase("getAdminProductsSuccess", (state, action) => {
+        state.loading = false;
         state.products = action.payload;
         state.inStock = action.payload.inStock;
         state.outOfStock = action.payload.outOfStock;
       })
-      .addCase("getAllProductsFail", (state) => {
+      .addCase("getAllProductsFail", (state, action) => {
         state.loading = true;
         state.error = action.payload;
       })
-      .addCase("getAdminProductsFail", (state) => {
+      .addCase("getAdminProductsFail", (state, action) => {
         state.loading = true;
         state.error = action.payload;
       })
-      .addCase("getProductsDetailsFail", (state) => {
+      .addCase("getProductsDetailsFail", (state, action) => {
         state.loading = true;
         state.error = action.payload;
       });
