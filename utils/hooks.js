@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Toast } from "react-native-toast-message/lib/src/Toast";
+import axios from "axios";
+import { SERVER } from "@/redux/store";
 
 export const useMessageAndErrorUser = (navigation, dispatch, navigateTo) => {
   const {
@@ -40,4 +42,20 @@ export const useMessageAndErrorUser = (navigation, dispatch, navigateTo) => {
   }, [error, message, dispatch]);
 
   return loading;
+};
+
+export const useSetCategories = (setCategories, isFocused) => {
+  useEffect(() => {
+    axios
+      .get(`${SERVER}/product/categories`)
+      .then((res) => {
+        setCategories(res.data.categories);
+      })
+      .catch((err) => {
+        Toast.show({
+          type: "error",
+          text1: err.response.data.error,
+        });
+      });
+  }, [isFocused]);
 };

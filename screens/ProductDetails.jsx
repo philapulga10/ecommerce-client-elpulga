@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Carousel from "react-native-snap-carousel";
 import {
   Dimensions,
@@ -10,9 +10,13 @@ import {
 } from "react-native";
 import { Avatar, Button } from "react-native-paper";
 import Toast from "react-native-toast-message";
+import { useDispatch } from "react-redux";
+import { useIsFocused } from "@react-navigation/native";
 
 import Header from "@/components/Header";
 import { colors, defaultStyle } from "@/styles/styles";
+import { useSelector } from "react-redux";
+import { getProductDetails } from "@/redux/actions/productAction";
 
 const CarouselCardItem = ({ item, index }) => {
   return (
@@ -23,12 +27,14 @@ const CarouselCardItem = ({ item, index }) => {
 };
 
 const ProductDetails = ({ route: { params } }) => {
-  console.log(params.id);
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
-  const name = "Macbook pro";
-  const price = 9999;
-  const stock = 232;
-  const description = "description";
+  const {
+    product: { name, price, stock, description, images },
+  } = useSelector((state) => state.product);
+
+  console.log("Product", name, price, stock, description, images);
 
   const [quantity, setQuantity] = useState(1);
   const isCarousel = useRef(null);
@@ -66,6 +72,10 @@ const ProductDetails = ({ route: { params } }) => {
     console.log("Adding to cart", quantity);
   };
 
+  useEffect(() => {
+    dispatch(getProductDetails(params.id));
+  }, [dispatch, params.id, isFocused]);
+
   return (
     <View
       style={{ ...defaultStyle, padding: 0, backgroundColor: colors.color1 }}
@@ -77,7 +87,7 @@ const ProductDetails = ({ route: { params } }) => {
         layout="default"
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
-        data={IMAGES}
+        data={images}
         renderItem={CarouselCardItem}
       />
 
@@ -187,14 +197,3 @@ export const iconOptions = {
     height: 25,
   },
 };
-
-const IMAGES = [
-  {
-    id: "1",
-    url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-  },
-  {
-    id: "2",
-    url: "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-  },
-];

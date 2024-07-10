@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "@/components/Header";
@@ -11,14 +11,17 @@ import Footer from "@/components/Footer";
 import { colors, defaultStyle } from "../styles/styles";
 import Heading from "@/components/Heading";
 import { getAllProducts } from "@/redux/actions/productAction";
+import { useSetCategories } from "@/utils/hooks";
 
 const Home = () => {
   const navigate = useNavigation();
   const dispath = useDispatch();
+  const isFocused = useIsFocused();
 
   const [category, setCategory] = useState("");
   const [activeSearch, setActiveSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [categories, setCategories] = useState([]);
 
   const { products } = useSelector((state) => {
     return state.product;
@@ -30,9 +33,17 @@ const Home = () => {
 
   const addToCardHandler = (id) => {};
 
+  useSetCategories(setCategories, isFocused);
+
   useEffect(() => {
-    dispath(getAllProducts());
-  }, [dispath]);
+    const timeOutId = setTimeout(() => {
+      dispath(getAllProducts(searchQuery, category));
+    }, 500);
+
+    return () => {
+      clearTimeout(timeOutId);
+    };
+  }, [dispath, searchQuery, category, isFocused]);
 
   return (
     <>
@@ -126,26 +137,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const categories = [
-  {
-    _id: "1",
-    category: "Nice",
-  },
-  {
-    _id: "2",
-    category: "Football",
-  },
-  {
-    _id: "3",
-    category: "Man",
-  },
-  {
-    _id: "4",
-    category: "Women",
-  },
-  {
-    _id: "5",
-    category: "Helicopter",
-  },
-];

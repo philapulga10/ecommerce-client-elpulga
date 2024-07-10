@@ -2,17 +2,18 @@ import axios from "axios";
 
 import { SERVER } from "@/redux/store";
 
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts = (keyword, category) => async (dispatch) => {
   try {
     dispatch({
       type: "getAllProductsRequest",
     });
 
-    const { data } = await axios.get(`${SERVER}/product/all`, {
-      withCredentials: true,
-    });
-
-    console.log("-----------------------data", data);
+    const { data } = await axios.get(
+      `${SERVER}/product/all?keyword=${keyword}&category=${category}`,
+      {
+        withCredentials: true,
+      }
+    );
 
     dispatch({
       type: "getAllProductsSuccess",
@@ -57,6 +58,8 @@ export const getProductDetails = (id) => async (dispatch) => {
     const { data } = await axios.get(`${SERVER}/product/single/${id}`, {
       withCredentials: true,
     });
+
+    console.log("getProductDetails.Product", data);
 
     dispatch({
       type: "getProductDetailsSuccess",

@@ -27,6 +27,10 @@ export const productReducer = createReducer(
         state.inStock = action.payload.inStock;
         state.outOfStock = action.payload.outOfStock;
       })
+      .addCase("getProductDetailsSuccess", (state, action) => {
+        state.loading = false;
+        state.product = action.payload;
+      })
       .addCase("getAllProductsFail", (state, action) => {
         state.loading = true;
         state.error = action.payload;
