@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
@@ -10,6 +11,7 @@ import { colors, defaultStyle } from "@/styles/styles";
 
 const Cart = () => {
   const navigate = useNavigation();
+  const { dispatch } = useDispatch();
 
   const incrementHandler = () => {};
 
@@ -27,23 +29,29 @@ const Cart = () => {
 
       <View style={{ paddingVertical: 20, flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {CART_ITAMES.map((item, index) => {
-            return (
-              <CartItem
-                navigate={navigate}
-                key={item.product}
-                id={item.product}
-                name={item.name}
-                stock={item.stock}
-                amount={item.price}
-                imgSrc={item.image}
-                index={index}
-                quantity={item.quantity}
-                incrementHandler={incrementHandler}
-                decrementHandler={decrementHandler}
-              />
-            );
-          })}
+          {cartItems.length > 0 ? (
+            cartItems.map((item, index) => {
+              return (
+                <CartItem
+                  navigate={navigate}
+                  key={item.product}
+                  id={item.product}
+                  name={item.name}
+                  stock={item.stock}
+                  amount={item.price}
+                  imgSrc={item.image}
+                  index={index}
+                  quantity={item.quantity}
+                  incrementHandler={incrementHandler}
+                  decrementHandler={decrementHandler}
+                />
+              );
+            })
+          ) : (
+            <Text style={{ textAlign: "center", fontSize: 18 }}>
+              Not items yet
+            </Text>
+          )}
         </ScrollView>
       </View>
 
@@ -60,9 +68,7 @@ const Cart = () => {
 
       <TouchableOpacity
         onPress={
-          CART_ITAMES.length > 0
-            ? () => navigate.navigate("confirmorder")
-            : null
+          cartItems.length > 0 ? () => navigate.navigate("confirmorder") : null
         }
       >
         <Button
@@ -84,7 +90,7 @@ const Cart = () => {
 
 export default Cart;
 
-export const CART_ITAMES = [
+export const cartItems = [
   {
     name: "Macbook",
     image:
