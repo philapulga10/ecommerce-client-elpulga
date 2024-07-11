@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
@@ -12,6 +12,8 @@ import { colors, defaultStyle } from "@/styles/styles";
 const Cart = () => {
   const navigate = useNavigation();
   const { dispatch } = useDispatch();
+
+  const { cartItems } = useSelector((state) => state.cart);
 
   const incrementHandler = () => {};
 
@@ -23,8 +25,8 @@ const Cart = () => {
 
       <Heading
         containerStyle={{ paddingTop: 70, marginLeft: 35 }}
-        text1="Our"
-        text2="Products"
+        text1="Shopping"
+        text2="Cart"
       />
 
       <View style={{ paddingVertical: 20, flex: 1 }}>
@@ -89,42 +91,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-export const cartItems = [
-  {
-    name: "Macbook",
-    image:
-      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-    product: "Macbook product",
-    stock: 3,
-    price: 99999,
-    quantity: 2,
-  },
-  {
-    name: "Puma shoes",
-    image:
-      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-    product: "Shoes product",
-    stock: 3,
-    price: 88888,
-    quantity: 3,
-  },
-  {
-    name: "Puma shoes 123",
-    image:
-      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-    product: "Shoes product",
-    stock: 3,
-    price: 88888,
-    quantity: 3,
-  },
-  {
-    name: "Puma shoes 456",
-    image:
-      "https://i.pinimg.com/originals/ab/94/af/ab94afad0d4b0ff2340fbc6490c28c3e.png",
-    product: "Shoes product",
-    stock: 3,
-    price: 88888,
-    quantity: 3,
-  },
-];

@@ -83,7 +83,7 @@ const ProductCard = ({
           }}
         >
           <Button
-            onPress={() => addToCardHandler(id, stock)}
+            onPress={() => addToCardHandler(id, name, price, image, stock)}
             textColor={i % 2 === 0 ? colors.color1 : colors.color2}
           >
             Add to cart

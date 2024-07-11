@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from "react-native-toast-message";
 
 import Header from "@/components/Header";
 import SearchModal from "@/components/SearchModal";
@@ -15,7 +16,7 @@ import { useSetCategories } from "@/utils/hooks";
 
 const Home = () => {
   const navigate = useNavigation();
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const isFocused = useIsFocused();
 
   const [category, setCategory] = useState("");
@@ -31,19 +32,43 @@ const Home = () => {
     setCategory(id);
   };
 
-  const addToCardHandler = (id) => {};
+  const addToCardHandler = (id, name, price, image, stock) => {
+    if (stock === 0) {
+      return Toast.show({
+        type: "error",
+        text1: "Out of stock",
+      });
+    }
+
+    dispatch({
+      type: "addToCart",
+      payload: {
+        product: id,
+        name,
+        price,
+        image,
+        stock,
+        quantity,
+      },
+    });
+
+    Toast.show({
+      type: "success",
+      text1: "Added to cart",
+    });
+  };
 
   useSetCategories(setCategories, isFocused);
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
-      dispath(getAllProducts(searchQuery, category));
+      dispatch(getAllProducts(searchQuery, category));
     }, 500);
 
     return () => {
       clearTimeout(timeOutId);
     };
-  }, [dispath, searchQuery, category, isFocused]);
+  }, [dispatch, searchQuery, category, isFocused]);
 
   return (
     <>

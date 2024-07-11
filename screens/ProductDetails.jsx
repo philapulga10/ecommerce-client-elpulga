@@ -68,8 +68,6 @@ const ProductDetails = ({ route: { params } }) => {
       type: "success",
       text1: "Added to cart",
     });
-
-    console.log("Adding to cart", quantity);
   };
 
   useEffect(() => {
