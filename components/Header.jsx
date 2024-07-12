@@ -2,15 +2,17 @@ import { TouchableOpacity } from "react-native";
 import React from "react";
 import { Avatar } from "react-native-paper";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 
 import { colors } from "../styles/styles";
 
 const Header = ({ back, emptyCart = false }) => {
   const navigate = useNavigation();
   const route = useRoute();
+  const dispatch = useDispatch();
 
   const emptyCartHandler = () => {
-    console.log("Empty cart");
+    dispatch({ type: "clearCart" });
   };
 
   return (
@@ -19,9 +21,10 @@ const Header = ({ back, emptyCart = false }) => {
         <TouchableOpacity
           onPress={() => navigate.goBack()}
           style={{
-            position: "absolute", left: 20,
+            position: "absolute",
+            left: 20,
             // top: 40, review
-            zIndex: 10
+            zIndex: 10,
           }}
         >
           <Avatar.Icon
@@ -37,9 +40,10 @@ const Header = ({ back, emptyCart = false }) => {
       <TouchableOpacity
         onPress={emptyCart ? emptyCartHandler : () => navigate.navigate("cart")}
         style={{
-          position: "absolute", right: 20,
+          position: "absolute",
+          right: 20,
           // top: 40, review
-          zIndex: 10
+          zIndex: 10,
         }}
       >
         <Avatar.Icon

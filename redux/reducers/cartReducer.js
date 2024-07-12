@@ -14,6 +14,12 @@ export const cartReducer = createReducer(
           state.cartItems = state.cartItems.filter((i) => {
             return i.product === item.product ? item : i;
           });
+
+          for (let i = 0; i < state.cartItems.length; i++) {
+            if (state.cartItems[i].product === isExist.product) {
+              state.cartItems[i] = item;
+            }
+          }
         } else {
           state.cartItems.push(item);
         }

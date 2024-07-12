@@ -17,8 +17,6 @@ const ProductListItem = ({
 }) => {
   const [openModal, setOpenModal] = useState(false);
 
-  console.log("--------------ProductListItem.navigate", navigate);
-
   return (
     <>
       <TouchableOpacity

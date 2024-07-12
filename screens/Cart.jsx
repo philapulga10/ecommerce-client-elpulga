@@ -8,16 +8,59 @@ import Header from "@/components/Header";
 import Heading from "@/components/Heading";
 import CartItem from "@/screens/CartItem";
 import { colors, defaultStyle } from "@/styles/styles";
+import Toast from "react-native-toast-message";
 
 const Cart = () => {
   const navigate = useNavigation();
-  const { dispatch } = useDispatch();
+  const dispatch = useDispatch();
 
   const { cartItems } = useSelector((state) => state.cart);
 
-  const incrementHandler = () => {};
+  const incrementHandler = (id, name, price, image, stock, quantity) => {
+    const newQuantity = quantity + 1;
 
-  const decrementHandler = () => {};
+    if (stock <= quantity) {
+      return Toast.show({
+        type: "error",
+        text1: "Maximun value added",
+      });
+    }
+
+    dispatch({
+      type: "addToCart",
+      payload: {
+        product: id,
+        name,
+        price,
+        image,
+        stock,
+        quantity: newQuantity,
+      },
+    });
+  };
+
+  const decrementHandler = (id, name, price, image, stock, quantity) => {
+    const newQuantity = quantity - 1;
+
+    if (1 > quantity) {
+      return dispatch({
+        type: "removeFromCart",
+        payload: id,
+      });
+    }
+
+    dispatch({
+      type: "addToCart",
+      payload: {
+        product: id,
+        name,
+        price,
+        image,
+        stock,
+        quantity: newQuantity,
+      },
+    });
+  };
 
   return (
     <View style={{ ...defaultStyle, padding: 0 }}>

@@ -58,7 +58,9 @@ const CartItem = ({
           <Text style={styles.quantityText}>{quantity}</Text>
 
           <TouchableOpacity
-            onPress={() => incrementHandler(id, quantity, stock)}
+            onPress={() =>
+              incrementHandler(id, name, amount, imgSrc, stock, quantity)
+            }
           >
             <Avatar.Icon {...iconOptions} icon="plus" />
           </TouchableOpacity>

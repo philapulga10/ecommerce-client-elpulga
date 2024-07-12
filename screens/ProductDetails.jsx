@@ -34,8 +34,6 @@ const ProductDetails = ({ route: { params } }) => {
     product: { name, price, stock, description, images },
   } = useSelector((state) => state.product);
 
-  console.log("Product", name, price, stock, description, images);
-
   const [quantity, setQuantity] = useState(1);
   const isCarousel = useRef(null);
 
@@ -60,9 +58,20 @@ const ProductDetails = ({ route: { params } }) => {
       return Toast.show({
         type: "error",
         text1: "Out of stock",
-        text2: "This is text 2",
       });
     }
+
+    dispatch({
+      type: "addToCart",
+      payload: {
+        product: params.id,
+        name,
+        price,
+        image: images[0].url,
+        stock,
+        quantity,
+      },
+    });
 
     Toast.show({
       type: "success",

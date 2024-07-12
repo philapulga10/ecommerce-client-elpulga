@@ -48,7 +48,7 @@ const Home = () => {
         price,
         image,
         stock,
-        quantity,
+        quantity: 1,
       },
     });
 
