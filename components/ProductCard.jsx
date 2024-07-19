@@ -21,8 +21,8 @@ const ProductCard = ({
     >
       <View
         style={{
-          elevation: 5,
-          width: 220,
+          elevation: 15,
+          width: 250,
           alignItems: "center",
           justifyContent: "space-between",
           margin: 20,
@@ -55,8 +55,9 @@ const ProductCard = ({
             numberOfLines={2}
             style={{
               color: i % 2 === 0 ? colors.color2 : colors.color3,
-              fontSize: 20,
-              fontWeight: "700",
+              fontSize: 25,
+              fontWeight: "300",
+              width: "60%",
             }}
           >
             {name}
@@ -77,6 +78,7 @@ const ProductCard = ({
           style={{
             backgroundColor: i % 2 === 0 ? colors.color2 : colors.color3,
             borderRadius: 0,
+            paddingVertical: 5,
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
             width: "100%",

@@ -3,12 +3,12 @@ import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
+import Toast from "react-native-toast-message";
 
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
 import CartItem from "@/screens/CartItem";
 import { colors, defaultStyle } from "@/styles/styles";
-import Toast from "react-native-toast-message";
 
 const Cart = () => {
   const navigate = useNavigation();
@@ -107,8 +107,10 @@ const Cart = () => {
           paddingHorizontal: 35,
         }}
       >
-        <Text>5 Items</Text>
-        <Text>5</Text>
+        <Text>{cartItems.length} Items</Text>
+        <Text>
+          {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}
+        </Text>
       </View>
 
       <TouchableOpacity
