@@ -54,7 +54,7 @@ export const useMessageAndErrorOther = (
   navigateTo,
   func
 ) => {
-  const { loading, message, error } = useSelector((state) => state.user);
+  const { loading, message, error } = useSelector((state) => state.other);
 
   useEffect(() => {
     if (error) {

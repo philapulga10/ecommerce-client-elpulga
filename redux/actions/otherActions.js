@@ -10,7 +10,7 @@ export const updatePassword =
       });
 
       const { data } = await axios.put(
-        `${SERVER}/user/changepassword`,
+        `${SERVER}/user/change-password`,
         { oldPassword, newPassword },
         {
           headers: { "Content-Type": "application/json" },
@@ -25,6 +25,8 @@ export const updatePassword =
         payload: data.message,
       });
     } catch (error) {
+      console.log("error = ", error.response.data.message);
+
       dispatch({
         type: "updatePasswordFail",
         payload: error.response.data.message,
