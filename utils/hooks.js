@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Toast } from "react-native-toast-message/lib/src/Toast";
 import axios from "axios";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
+
 import { SERVER } from "@/redux/store";
 
 export const useMessageAndErrorUser = (
@@ -78,9 +79,9 @@ export const useMessageAndErrorOther = (
         type: "clearMessage",
       });
 
-      navigateTo ? navigation.navigate(navigateTo) : null;
+      navigateTo && navigation.navigate(navigateTo);
 
-      func ? dispatch(func()) : null;
+      func && dispatch(func());
     }
   }, [error, message, dispatch]);
 
