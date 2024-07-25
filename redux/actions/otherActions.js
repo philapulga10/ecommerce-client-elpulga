@@ -23,8 +23,6 @@ export const updatePassword =
         payload: data.message,
       });
     } catch (error) {
-      console.log("error = ", error.response.data.message);
-
       dispatch({
         type: "updatePasswordFail",
         payload: error.response.data.message,
@@ -59,3 +57,26 @@ export const updateProfile =
       });
     }
   };
+
+export const updatePic = (formData) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "updatePicRequest",
+    });
+
+    const { data } = await axios.put(`${SERVER}/user/update-pic`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
+    });
+
+    dispatch({
+      type: "updatePicSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "updatePicFail",
+      payload: error.response.data.message,
+    });
+  }
+};

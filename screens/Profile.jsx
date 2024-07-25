@@ -2,14 +2,16 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Avatar, Button } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
+import { useIsFocused } from "@react-navigation/native";
+import mime from "mime";
 
 import { colors, defaultStyle, formHeading, defaultImg } from "@/styles/styles";
 import ButtonBox from "@/components/ButtonBox";
 import Loader from "@/components/Loader";
 import Footer from "@/components/Footer";
-import { useMessageAndErrorUser } from "@/utils/hooks";
+import { useMessageAndErrorOther, useMessageAndErrorUser } from "@/utils/hooks";
 import { loadUser, logout } from "@/redux/actions/userActions";
-import { useIsFocused } from "@react-navigation/native";
+import { updatePic } from "@/redux/actions/otherActions";
 
 const Profile = ({ navigation, route }) => {
   const dispatch = useDispatch();
@@ -48,9 +50,21 @@ const Profile = ({ navigation, route }) => {
     }
   };
 
+  const loadingPic = useMessageAndErrorOther(dispatch, null, null, loadUser);
+
   useEffect(() => {
     if (route.params?.image) {
       setAvatar(route.params.image);
+
+      const myForm = new FormData();
+
+      myForm.append("file", {
+        uri: route.params.image,
+        type: mime.getType(route.params.image),
+        name: route.params.image.split("/").pop(),
+      });
+
+      dispatch(updatePic(myForm));
     }
 
     dispatch(loadUser());
@@ -78,8 +92,15 @@ const Profile = ({ navigation, route }) => {
                 onPress={() =>
                   navigation.navigate("camera", { updateProfile: true })
                 }
+                disabled={loadingPic}
               >
-                <Button textColor={colors.color1}>Change photo</Button>
+                <Button
+                  loading={loadingPic}
+                  textColor={colors.color1}
+                  disabled={loadingPic}
+                >
+                  Change photo
+                </Button>
               </TouchableOpacity>
 
               <Text style={styles.name}>{user?.name}</Text>
