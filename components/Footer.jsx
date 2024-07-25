@@ -39,6 +39,9 @@ const Footer = ({ activeRoute = "home" }) => {
           backgroundColor: colors.color1,
           borderTopRightRadius: 120,
           borderTopLeftRadius: 120,
+          position: "absolute",
+          width: "100%",
+          bottom: 0,
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
@@ -64,8 +67,8 @@ const Footer = ({ activeRoute = "home" }) => {
                 isAuthenticated === false
                   ? "login"
                   : activeRoute === "profile"
-                    ? "account"
-                    : "account-outline"
+                  ? "account"
+                  : "account-outline"
               }
             />
           </TouchableOpacity>

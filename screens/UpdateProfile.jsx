@@ -1,6 +1,7 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { Button, TextInput } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
 
 import Header from "@/components/Header";
 
@@ -11,22 +12,28 @@ import {
   inputOptions,
   formStyles as styles,
 } from "@/styles/styles";
+import { updateProfile } from "@/redux/actions/otherActions";
+import { useMessageAndErrorOther } from "@/utils/hooks";
 
-const UpdateProfile = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAdress] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [pinCode, setPinCode] = useState("");
+const UpdateProfile = ({ navigation }) => {
+  const { user } = useSelector((state) => state.user);
 
-  let loading = false;
+  const [name, setName] = useState(user?.name);
+  const [email, setEmail] = useState(user?.email);
+  const [address, setAdress] = useState(user?.address);
+  const [city, setCity] = useState(user?.city);
+  const [country, setCountry] = useState(user?.country);
+  const [pinCode, setPinCode] = useState(user?.pinCode.toString());
+
+  const dispatch = useDispatch();
+
+  const loading = useMessageAndErrorOther(dispatch, navigation, "profile");
 
   const disableBtn =
     !name || !email || !address || !city || !country || !pinCode;
 
   const submitHandler = () => {
-    alert("Yeah");
+    dispatch(updateProfile(name, email, address, city, country, pinCode));
   };
 
   return (

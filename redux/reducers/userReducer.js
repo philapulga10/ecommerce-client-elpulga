@@ -30,7 +30,7 @@ export const userReducer = createReducer(initialState, (builder) => {
     .addCase("loadUserSuccess", (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;
-      state.message = action.payload;
+      state.user = action.payload;
     })
     .addCase("logoutSuccess", (state, action) => {
       state.loading = false;
