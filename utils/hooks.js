@@ -4,7 +4,11 @@ import { Toast } from "react-native-toast-message/lib/src/Toast";
 import axios from "axios";
 import { SERVER } from "@/redux/store";
 
-export const useMessageAndErrorUser = (navigation, dispatch, navigateTo) => {
+export const useMessageAndErrorUser = (
+  navigation,
+  dispatch,
+  navigateTo = "login"
+) => {
   const {
     loading,
     message,
@@ -38,6 +42,45 @@ export const useMessageAndErrorUser = (navigation, dispatch, navigateTo) => {
       dispatch({
         type: "clearMessage",
       });
+    }
+  }, [error, message, dispatch]);
+
+  return loading;
+};
+
+export const useMessageAndErrorOther = (
+  dispatch,
+  navigation,
+  navigateTo,
+  func
+) => {
+  const { loading, message, error } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (error) {
+      Toast.show({
+        type: "error",
+        text1: error,
+      });
+
+      dispatch({
+        type: "clearError",
+      });
+    }
+
+    if (message) {
+      Toast.show({
+        type: "success",
+        text1: message,
+      });
+
+      dispatch({
+        type: "clearMessage",
+      });
+
+      navigateTo ? navigation.navigate(navigateTo) : null;
+
+      func ? dispatch(func()) : null;
     }
   }, [error, message, dispatch]);
 

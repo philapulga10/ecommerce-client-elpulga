@@ -11,7 +11,7 @@ import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/Footer";
 import { colors, defaultStyle } from "../styles/styles";
 import Heading from "@/components/Heading";
-import { getAllProducts } from "@/redux/actions/productAction";
+import { getAllProducts } from "@/redux/actions/productActions";
 import { useSetCategories } from "@/utils/hooks";
 
 const Home = () => {

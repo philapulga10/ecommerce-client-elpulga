@@ -51,7 +51,11 @@ const CartItem = ({
 
       <View style={styles.quantityContainer}>
         <TouchableOpacity>
-          <TouchableOpacity onPress={() => decrementHandler(id, quantity)}>
+          <TouchableOpacity
+            onPress={() =>
+              decrementHandler(id, name, amount, imgSrc, stock, quantity)
+            }
+          >
             <Avatar.Icon {...iconOptions} icon="minus" />
           </TouchableOpacity>
 

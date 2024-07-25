@@ -16,7 +16,7 @@ import { useIsFocused } from "@react-navigation/native";
 import Header from "@/components/Header";
 import { colors, defaultStyle } from "@/styles/styles";
 import { useSelector } from "react-redux";
-import { getProductDetails } from "@/redux/actions/productAction";
+import { getProductDetails } from "@/redux/actions/productActions";
 
 const CarouselCardItem = ({ item, index }) => {
   return (

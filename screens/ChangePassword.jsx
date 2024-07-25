@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Button, TextInput } from "react-native-paper";
 
 import Header from "@/components/Header";
-import { login } from "@/redux/actions/userActions";
 import {
   colors,
   defaultStyle,
@@ -12,18 +11,21 @@ import {
   inputOptions,
   formStyles as styles,
 } from "@/styles/styles";
-import { useMessageAndErrorUser } from "@/utils/hooks";
+import { useMessageAndErrorOther } from "@/utils/hooks";
+import { updatePassword } from "@/redux/actions/otherActions";
 
-const ChangePassword = ({ navigation }) => {
+const ChangePassword = () => {
   const dispatch = useDispatch();
 
-  const loading = useMessageAndErrorUser(navigation, dispatch, "profile");
+  const loading = useMessageAndErrorOther(dispatch);
 
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
   const submitHandler = () => {
-    dispatch(login(email, password));
+    dispatch(updatePassword(oldPassword, newPassword));
+    setOldPassword("");
+    setNewPassword("");
   };
 
   return (
@@ -64,6 +66,5 @@ const ChangePassword = ({ navigation }) => {
     </View>
   );
 };
-
 
 export default ChangePassword;
