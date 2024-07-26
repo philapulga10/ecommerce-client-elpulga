@@ -1,25 +1,133 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Button, RadioButton } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+import { useStripe } from "@stripe/stripe-react-native";
+import Toast from "react-native-toast-message";
+import axios from "axios";
 
 import { colors, defaultStyle } from "@/styles/styles";
 import Header from "@/components/Header";
 import Heading from "@/components/Heading";
+import { placeOrder } from "@/redux/actions/otherActions";
+import { useMessageAndErrorOther } from "@/utils/hooks";
+import { SERVER } from "@/redux/store";
+import Loader from "@/components/Loader";
 
 const Payment = ({ navigation, route }) => {
-  const [paymentMethod, setPaymentMethod] = useState("COD");
+  const dispatch = useDispatch();
+  const stripe = useStripe();
 
-  const isAuthenticated = true;
+  const [paymentMethod, setPaymentMethod] = useState("COD");
+  const [loaderLoading, setLoaderLoading] = useState(false);
+
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const redirectToLogin = () => {
     navigation.navigate("login");
   };
 
-  const codHandler = () => { };
+  const codHandler = (paymentInfo) => {
+    const shippingInfo = {
+      address: user.address,
+      city: user.city,
+      country: user.country,
+      pinCode: user.pinCode,
+    };
 
-  const onlineHandler = () => { };
+    const itemsPrice = route.params.itemsPrice;
+    const shippingCharges = route.params.shippingCharges;
+    const taxPrice = route.params.taxPrice;
+    const totalAmount = route.params.totalAmount;
 
-  return (
+    dispatch(
+      placeOrder(
+        cartItems,
+        shippingInfo,
+        paymentMethod,
+        itemsPrice,
+        taxPrice,
+        shippingCharges,
+        totalAmount,
+        paymentInfo
+      )
+    );
+  };
+
+  const onlineHandler = async () => {
+    try {
+      const {
+        data: { client_secret },
+      } = await axios.post(
+        `${SERVER}/order/payment`,
+        {
+          totalAmount: route.params.totalAmount,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      const init = await stripe.initPaymentSheet({
+        paymentIntentClientSecret: client_secret,
+        merchantDisplayName: "6PackEcom",
+      });
+
+      if (init.error) {
+        return Toast.show({
+          type: "error",
+          text2: init.error.message,
+        });
+      }
+
+      const presentSheet = await stripe.presentPaymentSheet();
+
+      setLoaderLoading(true);
+
+      if (presentSheet.error) {
+        setLoaderLoading(false);
+
+        return Toast.show({
+          type: "error",
+          text1: presentSheet.error.message,
+        });
+      }
+
+      const { paymentIntent } = await stripe.retrievePaymentIntent(
+        client_secret
+      );
+
+      if (paymentIntent.status === "succeeded") {
+        return codHandler({
+          id: paymentIntent.id,
+          status: paymentIntent.status,
+        });
+      }
+    } catch (error) {
+      console.log("----------------------error", error);
+
+      return Toast.show({
+        type: "error",
+        text1: "Some error",
+        text2: error,
+      });
+    }
+  };
+
+  const loading = useMessageAndErrorOther(
+    dispatch,
+    navigation,
+    "profile",
+    () => ({ type: "clearCart" })
+  );
+
+  return loaderLoading ? (
+    <Loader />
+  ) : (
     <View style={defaultStyle}>
       <Header back={true} />
 
@@ -50,9 +158,10 @@ const Payment = ({ navigation, route }) => {
           !isAuthenticated
             ? redirectToLogin
             : paymentMethod === "COD"
-              ? codHandler
-              : onlineHandler
+            ? () => codHandler()
+            : onlineHandler
         }
+        disabled={loading}
       >
         <Button
           style={styles.btn}
@@ -60,6 +169,8 @@ const Payment = ({ navigation, route }) => {
           icon={
             paymentMethod === "COD" ? "check-circle" : "circle-multiple-outline"
           }
+          loading={loading}
+          disabled={loading}
         >
           {paymentMethod === "COD" ? "Place order" : "Pay"}
         </Button>

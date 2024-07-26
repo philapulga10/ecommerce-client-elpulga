@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Toast from "react-native-toast-message";
 import { Provider, useDispatch } from "react-redux";
 import { store } from "@/redux/store";
+import { StripeProvider } from "@stripe/stripe-react-native";
 
 import { loadUser } from "@/redux/actions/userActions";
 import Home from "@/screens/Home";
@@ -72,10 +73,22 @@ function MainApp() {
   );
 }
 
+const stripeKey =
+  "pk_test_51PUMP604dw2GOFFhqzTGzxOrIT5PTyiMqduoTSgOxA8k0qENoLEIjwHtP7OD56RowBZKi7w2FN2yVeVEH5dEYYJv00AiR5FdFG";
+
 export default function App() {
   return (
-    <Provider store={store}>
-      <MainApp />
-    </Provider>
+    <StripeProvider
+      threeDSecureParams={{
+        backgroundColor: "#fff",
+        timeout: 5,
+      }}
+      merchantIdentifier="6-pack-ecom.com"
+      publishableKey={stripeKey}
+    >
+      <Provider store={store}>
+        <MainApp />
+      </Provider>
+    </StripeProvider>
   );
 }

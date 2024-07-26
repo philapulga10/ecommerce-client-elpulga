@@ -9,7 +9,7 @@ import Header from "@/components/Header";
 import SearchModal from "@/components/SearchModal";
 import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/Footer";
-import { colors, defaultStyle } from "../styles/styles";
+import { colors, defaultStyle } from "@/styles/styles";
 import Heading from "@/components/Heading";
 import { getAllProducts } from "@/redux/actions/productActions";
 import { useSetCategories } from "@/utils/hooks";
@@ -23,6 +23,8 @@ const Home = () => {
   const [activeSearch, setActiveSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [categories, setCategories] = useState([]);
+
+  useSetCategories(setCategories, isFocused);
 
   const { products } = useSelector((state) => {
     return state.product;
@@ -58,8 +60,6 @@ const Home = () => {
     });
   };
 
-  useSetCategories(setCategories, isFocused);
-
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       dispatch(getAllProducts(searchQuery, category));
@@ -80,6 +80,7 @@ const Home = () => {
           setActiveSearch={setActiveSearch}
         />
       )}
+
       <View style={defaultStyle}>
         <Header back={true} />
 

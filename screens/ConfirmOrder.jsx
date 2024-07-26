@@ -73,7 +73,7 @@ const ConfirmOrder = () => {
           navigate.navigate("payment", {
             itemsPrice,
             shippingCharges,
-            tax,
+            taxPrice: tax,
             totalAmount,
           })
         }

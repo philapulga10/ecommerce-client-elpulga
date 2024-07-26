@@ -63,6 +63,7 @@ const SearchModal = ({
   const backAction = () => {
     setSearchQuery("");
     setActiveSearch(false);
+
     return true;
   };
 

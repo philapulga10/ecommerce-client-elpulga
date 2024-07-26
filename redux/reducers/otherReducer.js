@@ -34,6 +34,10 @@ export const otherReducer = createReducer({}, (builder) => {
     .addCase("updatePicFail", (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    })
+    .addCase("placeOrderFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     });
 
   builder.addCase("clearError", (state) => {
