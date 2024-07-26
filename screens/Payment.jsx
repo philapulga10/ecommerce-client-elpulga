@@ -108,8 +108,6 @@ const Payment = ({ navigation, route }) => {
         });
       }
     } catch (error) {
-      console.log("----------------------error", error);
-
       return Toast.show({
         type: "error",
         text1: "Some error",
@@ -209,3 +207,5 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 });
+
+// [@stripe/stripe-react-native] You have not provided the 'returnURL' field to 'initPaymentSheet', so payment methods that require redirects will not be shown in your iOS Payment Sheet. Visit https://stripe.com/docs/payments/accept-a-payment?platform=react-native&ui=payment-sheet#react-native-set-up-return-url to learn more.
